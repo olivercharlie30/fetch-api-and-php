@@ -15,3 +15,22 @@ document.querySelector("#regForm").addEventListener('submit', e=> {
 
   }).catch(error => console.log(error));
 });
+
+
+
+fetch('read.php')
+.then((response) => response.text())
+.then(response => {
+    console.log(response)
+    let output= '';
+    for(let i in response){
+        output += `<tr>
+                  
+                  <td>${response[i].firstname}</td>
+                  <td>${response[i].lastname}</td>
+                  <td>${response[i].username}</td>
+                  <td>${response[i].password}</td>
+                 </tr>`;
+    }
+    document.querySelector(".tbody").innerHTML = output;
+}).catch(error => console.log(error))
