@@ -19,18 +19,16 @@ document.querySelector("#regForm").addEventListener('submit', e=> {
 
 
 fetch('read.php')
-.then((response) => response.text())
+.then((response) => response.json())
 .then(response => {
     console.log(response)
     let output= '';
-    for(let i in response){
+    response.forEach(element => {
         output += `<tr>
                   
-                  <td>${response[i].firstname}</td>
-                  <td>${response[i].lastname}</td>
-                  <td>${response[i].username}</td>
-                  <td>${response[i].password}</td>
+                  <td>${element.firstname}</td>
+                  <td>${element.lastname}</td>
                  </tr>`;
-    }
+    });
     document.querySelector(".tbody").innerHTML = output;
 }).catch(error => console.log(error))
